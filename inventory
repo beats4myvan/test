@@ -1,0 +1,21 @@
+web ansible_host=192.168.82.100
+ansible_user=vagrant
+ansible_ssh_pass=vagrant  
+
+[grp-webservers]
+web
+
+db ansible_host=192.168.82.101 ansible_user=vagrant ansible_ssh_pass=vagrant
+
+[grp-databases]
+db
+clnt ansible_host=192.168.82.102 ansible_user=vagrant ansible_ssh_pass=vagrant
+[grp-stations]
+clnt
+[grp-servers:children]
+grp-webservers
+grp-databases
+
+[grp-servers:vars]
+ansible_user=vagrant
+ansible_ssh_pass=vagrant
